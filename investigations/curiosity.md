@@ -147,7 +147,7 @@ Following Q4, what are the entry numbers of the files after being renamed? (1 po
 I'll take a different approach here — did I mention how annoying Timeline Explorer is to read, lol. After much trial trying to understand why homepilot-v1 has various earlier timestamps, which proves the file name had already changed but does not mean it's the sequence number they are looking for. This can be incredibly frustrating, but what I've concluded is that the more filters we can attach, the better. I sorted by the homepilot- name and queried `FileCreate`, and going up the timeline we see homepilot-main.zip, and the next ones are homepilot-v1.zip and homepilot-v2.zip under those entries.
 
 <p align="center">
-<img src=screenshots/curiosity-entry.png width="700">
+<img src=screenshots/homepilot-entry.png width="700">
 </p>
 
 **Note** While tracing these entries I spotted a deletion in the same window that doesn't answer this question but is worth logging: @ 2026-04-15 10:51:12 homepilot-v2.zip is placed in the recycling bin and the file name changes to $RGMT3I7.zip. Deleting the versioned copies right after staging them is behavior to come back to.
