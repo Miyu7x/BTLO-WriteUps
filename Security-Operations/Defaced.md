@@ -139,33 +139,58 @@ Timeline: Feb 18, 2021 11:41:52:000 backdoor.jpg.php
  
 ### What time was the first command executed through the PHP shell? (3 points)
 
-Timeline: Feb 18, 2021 11:41:34:000 webshell.php
+<p align="center">
+<img src=screenshots/defaced-whoami.png width="700">
+</p
+
+Timeline: 
+ - Feb 18, 2021 11:41:34:000 webshell.php
+ - Feb 18, 2021 11:41:52:000 Attacker attempts to use 42k bytes backdoor.jpg.php but it fails, you see he checks refreshes the pages but no commands are run, even though we see reposnse 200
+ - Feb 18, 2021 11:42:32:000 He succeeds with a 1.2k-byte PHP shell a different path is observed in the URL, different URL different size, different payload.
+ - Feb 18, 2021 11:42:35:000 He refreshes the page to ensure its working?
+ - Feb 18, 2021 11:42:44:000 The attacker runs c=whoami
  
-**Answer:**
+**Answer: 18/02/2021 11:42:44**
  
 ---
  
 ### Which config file does the attacker attempt to read using the command 'cat'? (2 points)
+
+<p align="center">
+<img src=screenshots/defaced-config.png width="700">
+</p
+
+ - Feb 18, 2021 11:43:14:000 we observe the attacker running their first cat command: /etc/passwd. This, however, is not a config file; let's keep investigating the timeline.
+ - Feb 18, 2021 11:44:02:000 The attacker runs the command: c=cat opt/lmapp/htdocs/mikepharmasystem/config.php
  
-**Answer:**
+**Answer: opt/lmapp/htdocs/mikepharmasystem/config.php**
  
-*Notes:*
  
 ---
  
 ### At what time was the database dumped by the attacker? (2 points)
+
+<p align="center">
+<img src=screenshots/defaced-whoami.png width="700">
+</p
  
-**Answer:**
+message: (*mysql* or *mysqldump* or *.sql*)
+ - Feb 18, 2021 11:44:02:000 The attacker is reading the config file which stores DB passwords
+ - Feb 18, 2021 11:44:50:000 The attacker is looking inside /phpmyadmin/db_structure.php but nothing is being dumped yet.
+
+Let's pivot our filter and investigate what the attacker is doing inside phpadmyadmin.
+request: *phpmyadmin*
+ - Feb 18, 2021 11:44:59:000 This is 4 sedonds after the attcaker dumps the db: db_export.php?db=Mike_Pharmaceuticals
  
-*Notes:*
+**Answer: 18/02/2021 11:44:59**
  
 ---
  
 ### The attacker exfiltrated the database records. What is the database name? (Just the name, without any extension) (2 points)
- 
-**Answer:**
- 
-*Notes:*
+
+In the previous question we already found the db name: db=Mike_Pharmaceuticals
+
+**Answer: Mike_Pharmaceuticals**
  
 ---
  
