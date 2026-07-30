@@ -1,12 +1,12 @@
 ---
 title: Defaced
-module: 
+module: Investigation
 path: Security Operations
 platform: Blue Team Labs Online
 tags: [ELK, Security Operations, Web Attack, Log Analysis, T1070.004, T1595.002, T1059.004]
-status: 
-date: 
-date_completed: 
+status: Complete
+date: 2026-07-29
+date_completed: 2026-07-30 
 ---
 *Write-up by [Miyu7x](https://github.com/Miyu7x) | TryHackMe: [Miyu7](https://tryhackme.com/p/Miyu7) | BTLO: [Miyu7x](https://blueteamlabs.online/public/user/Miyu7x)*
 
