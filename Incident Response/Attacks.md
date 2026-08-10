@@ -44,17 +44,17 @@ The firewall image shows 192.168.1.33 hitting a range of ports on a single host.
 
 ### Q2. We can see from the firewall image in Q1 that the IP address 192.168.1.33 checked to see what ports were listening on the other system. What command can we use in CMD to check which ports are listening on the endpoint? (Format: command -x) (1 points)
 
-`netstat` lists network connections and listening sockets.
+`netstat` lists network connections and listening sockets. On Windows, `-a` is what adds listening ports to the output. Without it netstat only shows established connections, which would miss exactly what the scan in Q1 was probing for.
 
 ```
-netstat -t
+netstat -a
 ```
 
 <p align="center">
 <img src=screenshots/attacks-q2.png width="700">
 </p>
 
-**Answer: netstat -t**
+**Answer: netstat -a**
 
 ---
 
@@ -451,7 +451,7 @@ Searched both SHA256 values on VirusTotal, search only and no upload, and the Co
 
 ## Notes and open questions
 
-- **`netstat -t` on Windows is not what my note said.** In CMD, `-t` displays the current connection offload state. The `-t` that filters TCP is Linux `netstat`. On Windows the standard for listening ports is `netstat -an` or `netstat -ano` to add the owning PID. BTLO accepted `-t`, but I should not carry that explanation forward.
+- **Useful netstat variants for next time.** `-a` gives listening ports, `-n` skips DNS resolution so the output is numeric and fast, and `-o` adds the owning process ID. `netstat -ano` is the combination worth reaching for on a live box, since the PID lets you pivot straight into Task Manager or a Sysmon Event ID 1 lookup.
 - **The Q20 answer conflicts with the Q21 evidence.** The Run key at 5:24:21 PM was written by `C:\Program Files\7-Zip\svchost.exe`, the malware named directly in the `Image` field, and it is six seconds earlier than the 5:24:27 PM answer. By the plain wording of "first set by the malware," 5:24:21 PM is the better answer. The key says 5:24:27 PM.
 - **Deprecated IDs in the Sysmon config.** `RuleName` values `T1060` and `T1089` are retired. Current mappings are `T1547.001` and `T1562.001`. The config on this box is built on an older ATT&CK version, so the RuleName is a pointer and not an answer.
 - **The broker pattern.** Defender settings live under keys the malware cannot write. `MsMpEng.exe` and `services.exe` commit the write on its behalf, so a legitimate `Image` field does not rule out malicious causation. This broke my first read of Q20.
