@@ -133,7 +133,7 @@ When a new local account is created it gets logged in the Windows Security log a
 - 11/18/2022 5:14:59 PM, Microsoft Windows security auditing, 4720, User Account Management, Audit Success
 
 <p align="center">
-<img src=screenshots/q9.png width="700">
+<img src=screenshots/attacks-q9.png width="700">
 </p>
 
 **Answer: Create Account, T1136**
@@ -183,7 +183,7 @@ Deleting an account takes access away from the person who owned it. That lands u
 Data sources live on their own page: https://attack.mitre.org/datasources/
 
 <p align="center">
-<img src=screenshots/q13.png width="700">
+<img src=screenshots/attacks-q13.png width="700">
 </p>
 
 **Answer: DS0002**
@@ -239,7 +239,7 @@ Keyloggers are a form of input capture, which falls under Collection.
 Both names are masquerades. `rundll33.exe` is a typosquat of the real `rundll32.exe`, and `svchost.exe` belongs in System32, not in a 7-Zip folder.
 
 <p align="center">
-<img src=screenshots/q17.png width="700">
+<img src=screenshots/attacks-q17.png width="700">
 </p>
 
 - 11/18/2022 5:22:47 PM, rundll33.exe from 7z.exe
@@ -329,7 +329,7 @@ Both names masquerade as Windows components. `atapi` is a real storage driver, s
 	- `Details` = `C:\Users\Administrator\AppData\Roaming\WPDNSE\svchost.exe`, an attacker binary
 
 <p align="center">
-<img src=screenshots/q22.png width="700">
+<img src=screenshots/attacks-q22.png width="700">
 </p>
 
 Worth noting, this one looks like persistence and is not:
