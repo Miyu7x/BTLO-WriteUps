@@ -9,7 +9,7 @@ date_completed: 2026-08-13
 ---
 *Write-up by [Miyu7x](https://github.com/Miyu7x) | TryHackMe: [Miyu7](https://tryhackme.com/p/Miyu7) | BTLO: [Miyu7x](https://blueteamlabs.online/public/user/Miyu7x)*
 <p align="center">
-<img src=screenshots/eradication-intro.png width="1500">
+<img src=screenshots/eradication.png width="1500">
 </p>
 ---
 
@@ -56,7 +56,7 @@ python3 yarGen.py -m /home/ubuntu/Desktop/Investigation/MALWARE-SAMPLE
 ```
 
 <p align="center">
-<img src=screenshots/eradication-q1a.png width="700">
+<img src=screenshots/eradication-yargen.png width="700">
 </p>
 
 Rules are saved to `/home/ubuntu/Desktop/Investigation/yarGen/yargen_rules.yar`.
@@ -78,7 +78,7 @@ yara -r yargen_rules.yar /home/John/
 ```
 
 <p align="center">
-<img src=screenshots/eradication-q1b.png width="700">
+<img src=screenshots/eradication-q1.png width="700">
 </p>
 
 **Answer:** `/home/John/.bash_history`
@@ -124,13 +124,13 @@ file /home/Trevor/Downloads/.../.../.../a.a
 yarGen writes the sample's SHA256 into the `meta:` block of the rule as `hash1`, so no `sha256sum` is needed.
 
 <p align="center">
-<img src=screenshots/eradication-q3a.png width="700">
+<img src=screenshots/eradication-hashes.png width="700">
 </p>
 
 Take the hash, not the filename. Filenames are attacker controlled, the hash is derived from the content. Submit it to an analysis platform such as Joe Sandbox, VirusTotal, or Hybrid Analysis, and check the result against the challenge tag T1056.001, Input Capture: Keylogging.
 
 <p align="center">
-<img src=screenshots/eradication-q3b.png width="700">
+<img src=screenshots/eradication-q3.png width="700">
 </p>
 
 **Answer:** Snake Keylogger
@@ -141,6 +141,10 @@ Take the hash, not the filename. Filenames are attacker controlled, the hash is 
 
 ### Q4. What is the full file path for the rule match in /John/? _(5 points)_
 
+<p align="center">
+<img src=screenshots/eradication-part2.png width="700">
+</p>
+
 Part Two runs the same problem backwards. Part One went sample to rule and the tool wrote it. Part Two goes intel to rule and I write it. That translation from a human readable IOC into detection logic is the actual skill being tested.
 
 The yarGen output is the skeleton, so the second rule reuses the same two blocks, `strings:` and `condition:`.
@@ -150,11 +154,11 @@ nano part2.yar
 ```
 
 <p align="center">
-<img src=screenshots/eradication-q4a.png width="700">
+<img src=screenshots/eradication-rule.png width="700">
 </p>
 
 <p align="center">
-<img src=screenshots/eradication-q4b.png width="700">
+<img src=screenshots/eradication-q4.png width="700">
 </p>
 
 **Answer:** `/home/John/Downloads/Old/.history.sc`
@@ -171,11 +175,11 @@ Ran the same rule against `/home/Trevor/` and got nothing back.
 - Removed the size check, loosened the condition, re-ran.
 
 <p align="center">
-<img src=screenshots/eradication-q5a.png width="700">
+<img src=screenshots/eradication-rule2.png width="700">
 </p>
 
 <p align="center">
-<img src=screenshots/eradication-q5b.png width="700">
+<img src=screenshots/eradication-q5.png width="700">
 </p>
 
 The match is a `.png`. A picture file matching a malware rule is either a false positive or not a picture. Adding `-s` to the yara command prints which strings actually hit, which is how you tell the two apart. A hit on content strings is real, a hit on size alone is not.
